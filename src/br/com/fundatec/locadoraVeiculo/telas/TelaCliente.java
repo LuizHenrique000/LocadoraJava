@@ -60,9 +60,6 @@ public class TelaCliente {
         } else if (tipoPessoa.equals(TipoPessoa.FISICA)) {
             System.out.println("Digite seu nome: ");
             nome = in.nextLine();
-            System.out.println("Digite seu documento: ");
-            documento = in.nextLong();
-            in.nextLine();
             System.out.println("Digite seu tipo de documento: ");
             tipoDocumento = TipoDocumento.valueOf(in.next().toUpperCase());
             if (tipoDocumento.equals(TipoDocumento.CPF)) {
