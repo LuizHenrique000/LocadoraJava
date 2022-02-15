@@ -6,6 +6,7 @@ import br.com.fundatec.locadoraVeiculo.enums.TipoPessoa;
 import br.com.fundatec.locadoraVeiculo.models.Cliente;
 import br.com.fundatec.locadoraVeiculo.models.Endereco;
 import br.com.fundatec.locadoraVeiculo.bancoDeDados.ClienteRepository;
+
 import java.util.Scanner;
 
 public class TelaCliente {
@@ -56,8 +57,7 @@ public class TelaCliente {
             in.nextLine();
             System.out.println("Digite sua razão social: ");
             razaoSocial = in.nextLine();
-        }
-        else if(tipoPessoa.equals(TipoPessoa.FISICA)) {
+        } else if (tipoPessoa.equals(TipoPessoa.FISICA)) {
             System.out.println("Digite seu nome: ");
             nome = in.nextLine();
             System.out.println("Digite seu documento: ");
@@ -67,11 +67,11 @@ public class TelaCliente {
             tipoDocumento = TipoDocumento.valueOf(in.next().toUpperCase());
             if (tipoDocumento.equals(TipoDocumento.CPF)) {
                 System.out.println("Informe o CPF: ");
-               documento = in.nextLong();
+                documento = in.nextLong();
                 in.nextLine();
             } else if (tipoDocumento.equals(TipoDocumento.RG)) {
                 System.out.println("Informe o RG:");
-              documento = in.nextLong();
+                documento = in.nextLong();
                 in.nextLine();
             }
         }
@@ -97,9 +97,10 @@ public class TelaCliente {
     }
 
     private void listarClientes() {
-        for (Cliente elemento :
-                bancoCliente.getClientes()) {
-            System.out.println("Nome: " + elemento.getNome() + "\nEndereço: " + elemento.getEndereco().getLogradouro() + "\nPessoa juridica ou fisica : " + elemento.getTipoPessoa());
+        for (Cliente elemento : bancoCliente.getClientes()) {
+            System.out.println("Nome: " + elemento.getNome() + "\nEndereço: " + elemento.getEndereco().getLogradouro() +
+                    "," + elemento.getEndereco().getNumero() + "," + elemento.getEndereco().getBairro() + "," + elemento.getEndereco().getCidade() +
+                    "," + elemento.getEndereco().getUf() + " - " + elemento.getEndereco().getCep() + "\nPessoa juridica ou fisica : " + elemento.getTipoPessoa());
             System.out.println("_");
         }
     }
