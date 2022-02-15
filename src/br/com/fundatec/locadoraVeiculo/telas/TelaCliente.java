@@ -6,7 +6,6 @@ import br.com.fundatec.locadoraVeiculo.enums.TipoPessoa;
 import br.com.fundatec.locadoraVeiculo.models.Cliente;
 import br.com.fundatec.locadoraVeiculo.models.Endereco;
 import br.com.fundatec.locadoraVeiculo.bancoDeDados.ClienteRepository;
-
 import java.util.Scanner;
 
 public class TelaCliente {
