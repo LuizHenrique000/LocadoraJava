@@ -1,4 +1,4 @@
-package br.com.fundatec.locadoraVeiculo.bancoDeDados;
+package br.com.fundatec.locadoraVeiculo.bancodedados;
 
 import br.com.fundatec.locadoraVeiculo.models.Cliente;
 

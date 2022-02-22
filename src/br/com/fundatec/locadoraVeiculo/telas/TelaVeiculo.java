@@ -1,25 +1,34 @@
 package br.com.fundatec.locadoraVeiculo.telas;
 
-import br.com.fundatec.locadoraVeiculo.bancoDeDados.VeiculoRepository;
+import br.com.fundatec.locadoraVeiculo.bancodedados.CriacaoBaseDados;
+import br.com.fundatec.locadoraVeiculo.bancodedados.VeiculoRepository;
 import br.com.fundatec.locadoraVeiculo.enums.TipoVeiculo;
 import br.com.fundatec.locadoraVeiculo.models.Veiculo;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TelaVeiculos {
+public class TelaVeiculo {
 
-    boolean continuar = true;
-    private VeiculoRepository bancoVeiculo = VeiculoRepository.criar();
+
+    public VeiculoRepository bancoVeiculo = VeiculoRepository.criar();
     private Scanner in = new Scanner(System.in);
 
     public void imprimirTelaVeiculos() {
-
+        boolean continuar = true;
         while (continuar) {
             System.out.println("__________TELA DE VEICULOS__________");
             System.out.println("| Digite 1 para Cadastrar Veículos |");
             System.out.println("| Digite 2 para Listar Veículos    |");
             System.out.println("| Digite 0 para Retornar ao menu   |");
             System.out.println("------------------------------------");
-            int opcao = in.nextInt();
+            int opcao = 4;
+
+            try {
+                opcao = in.nextInt();
+            } catch (InputMismatchException excecao) {
+                System.out.println("resposta errada, digite entre 1, 2 ou 0");
+            }
 
             switch (opcao) {
                 case 1:
@@ -57,11 +66,15 @@ public class TelaVeiculos {
         bancoVeiculo.cadastrarVeiculo(veiculo);
     }
 
-    private void listarVeiculos() {
+   public void listarVeiculos() {
+        CriacaoBaseDados criacaoBaseDados = new CriacaoBaseDados();
+        CriacaoBaseDados.inicializarBase();
         for (Veiculo elemento :
                 bancoVeiculo.getVeiculos()) {
-            System.out.println("Modelo: " + elemento.getModelo() + "\nMarca: " + elemento.getMarca() + "\nPlaca: " + elemento.getPlaca());
+            System.out.println("Placa: " + elemento.getPlaca() +  " Marca: " + elemento.getMarca() + " Modelo: " + elemento.getModelo() + " Tipo do Veiculo: " + elemento.getTipoVeiculo() + " Kilometragem: " +
+                    elemento.getKilometragem() + " Valor por Km Rodado: " + elemento.getValorKmRodado() + " Valor da diaria: " + elemento.getValorDiaria());
             System.out.println("_");
+
         }
     }
 }

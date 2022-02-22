@@ -1,4 +1,4 @@
-package br.com.fundatec.locadoraVeiculo.bancoDeDados;
+package br.com.fundatec.locadoraVeiculo.bancodedados;
 
 import br.com.fundatec.locadoraVeiculo.models.Veiculo;
 
@@ -23,7 +23,6 @@ public class VeiculoRepository {
 
     public void cadastrarVeiculo(Veiculo veiculo) {
         this.veiculos.add(veiculo);
-        System.out.println("Veiculo cadastrado com sucesso");
     }
 
     public List<Veiculo> getVeiculos() {

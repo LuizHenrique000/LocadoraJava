@@ -2,11 +2,12 @@ package br.com.fundatec.locadoraVeiculo.telas;
 
 import java.util.Scanner;
 
-public class TelaLocacoes {
+public class TelaLocacao {
     private Scanner in = new Scanner(System.in);
-    boolean continuar = true;
+
 
     public void imprimirTelaDeLocacoes() {
+        boolean continuar = true;
         while (continuar) {
             System.out.println("_________TELA DE LOCAÇÕES___________");
             System.out.println("| Digite 1 para Cadastrar Locações |");
@@ -18,7 +19,7 @@ public class TelaLocacoes {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Cadastrar locações");
+                 cadastrarLocacao();
                     break;
                 case 2:
                     System.out.println("Encerrar locações");
@@ -32,5 +33,7 @@ public class TelaLocacoes {
                     System.out.print("Resposta Inválida");
             }
         }
+    }
+    private void cadastrarLocacao(){
     }
 }
