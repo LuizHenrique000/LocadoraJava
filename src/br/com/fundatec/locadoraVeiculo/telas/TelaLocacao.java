@@ -54,6 +54,7 @@ public class TelaLocacao {
                     " Valor da diaria: " + elemento.getValorDiaria());
             System.out.println("_");
         }
+
         System.out.printf("Escolha um veículo pelo seu ID: ");
 
     }
