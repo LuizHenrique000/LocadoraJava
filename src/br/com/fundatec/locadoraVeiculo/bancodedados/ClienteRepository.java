@@ -24,7 +24,6 @@ public class ClienteRepository {
 
     public void adicionar(Cliente cliente) {
         this.clientes.add(cliente);
-        System.out.println("Cliente cadastrado com sucesso");
     }
 
     public List<Cliente> getClientes() {

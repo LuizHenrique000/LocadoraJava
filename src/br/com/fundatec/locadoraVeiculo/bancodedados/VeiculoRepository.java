@@ -32,4 +32,7 @@ public class VeiculoRepository {
     public List<Veiculo> get(int i) {
         return veiculos;
     }
+    public Veiculo selecionarVeiculo(int indice) {
+        return veiculos.get(indice);
+    }
 }

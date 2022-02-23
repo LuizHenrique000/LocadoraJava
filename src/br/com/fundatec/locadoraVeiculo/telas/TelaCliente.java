@@ -1,6 +1,8 @@
 package br.com.fundatec.locadoraVeiculo.telas;
 
 
+import br.com.fundatec.locadoraVeiculo.bancodedados.CriacaoBaseDadoCliente;
+import br.com.fundatec.locadoraVeiculo.bancodedados.CriacaoBaseDadoVeiculo;
 import br.com.fundatec.locadoraVeiculo.enums.TipoDocumento;
 import br.com.fundatec.locadoraVeiculo.enums.TipoPessoa;
 import br.com.fundatec.locadoraVeiculo.models.Cliente;
@@ -50,7 +52,7 @@ public class TelaCliente {
     private void cadastrarCliente() {
         String razaoSocial = "";
         String nome = "";
-        long documento = 0L;
+        long documento = 0;
         TipoDocumento tipoDocumento = null;
         Long cnpj = 0L;
 
@@ -114,6 +116,7 @@ public class TelaCliente {
     }
 
     private void listarClientes() {
+        CriacaoBaseDadoCliente.inicializarBase();
         for (Cliente elemento : bancoCliente.getClientes()) {
             if (elemento.getTipoPessoa().equals(TipoPessoa.FISICA)) {
                 System.out.println("Pessoa juridica ou fisica : " + elemento.getTipoPessoa() + "," + " Nome: " + elemento.getNome() +
