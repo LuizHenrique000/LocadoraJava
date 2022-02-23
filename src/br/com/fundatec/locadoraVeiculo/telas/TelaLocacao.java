@@ -1,14 +1,20 @@
 package br.com.fundatec.locadoraVeiculo.telas;
 
+import br.com.fundatec.locadoraVeiculo.bancodedados.CriacaoBaseDados;
+import br.com.fundatec.locadoraVeiculo.bancodedados.VeiculoRepository;
+import br.com.fundatec.locadoraVeiculo.models.Veiculo;
+
 import java.util.Scanner;
 
 public class TelaLocacao {
     private Scanner in = new Scanner(System.in);
+    public VeiculoRepository bancoVeiculo = VeiculoRepository.criar();
 
 
     public void imprimirTelaDeLocacoes() {
         boolean continuar = true;
         while (continuar) {
+            System.out.printf("");
             System.out.println("_________TELA DE LOCAÇÕES___________");
             System.out.println("| Digite 1 para Cadastrar Locações |");
             System.out.println("| Digite 2 para Encerrar Locações  |");
@@ -19,7 +25,7 @@ public class TelaLocacao {
 
             switch (opcao) {
                 case 1:
-                 cadastrarLocacao();
+                    cadastrarLocacao();
                     break;
                 case 2:
                     System.out.println("Encerrar locações");
@@ -28,12 +34,27 @@ public class TelaLocacao {
                     System.out.println("Listar locações");
                     break;
                 case 0:
-                   return;
+                    return;
                 default:
                     System.out.print("Resposta Inválida");
             }
         }
     }
-    private void cadastrarLocacao(){
+
+    private void cadastrarLocacao() {
+        int contador = 0;
+        CriacaoBaseDados.inicializarBase();
+        for (Veiculo elemento :
+                bancoVeiculo.getVeiculos()) {
+            System.out.println("Id: " + contador++ + "," + "Placa: " +
+                    elemento.getPlaca() + "," + " Marca: " + elemento.getMarca() + "," +
+                    " Modelo: " + elemento.getModelo() + "," + " Tipo do Veiculo: " + elemento.getTipoVeiculo() +
+                    "," + " Kilometragem: " +
+                    elemento.getKilometragem() + " Valor por Km Rodado: " + elemento.getValorKmRodado() +
+                    " Valor da diaria: " + elemento.getValorDiaria());
+            System.out.println("_");
+        }
+        System.out.printf("Escolha um veículo pelo seu ID: ");
+
     }
 }

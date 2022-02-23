@@ -7,11 +7,11 @@ public class Veiculo {
     private String marca;
     private String modelo;
     private TipoVeiculo tipoVeiculo;
-    private float kilometragem;
+    private Float kilometragem;
     private Double valorKmRodado;
     private Double valorDiaria;
 
-    public Veiculo(String placa, String marca, String modelo, TipoVeiculo tipoVeiculo, float kilometragem,
+    public Veiculo(String placa, String marca, String modelo, TipoVeiculo tipoVeiculo, Float kilometragem,
                    Double valorKmRodado, Double valorDiaria) {
         this.placa = placa;
         this.marca = marca;
@@ -38,7 +38,7 @@ public class Veiculo {
         return tipoVeiculo;
     }
 
-    public float getKilometragem() {
+    public Float getKilometragem() {
         return kilometragem;
     }
 

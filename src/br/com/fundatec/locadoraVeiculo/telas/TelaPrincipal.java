@@ -18,14 +18,14 @@ public class TelaPrincipal {
             System.out.println("| Digite 3 para Tela de Locações |");
             System.out.println("| Digite 0 para Encerrar         |");
             System.out.println("----------------------------------");
-            int opcao = -1;
+            int opcao;
 
             try {
                 opcao = in.nextInt();
-            } catch (InputMismatchException excecao) {
-                System.out.println("resposta errada, digite entre 1, 2 ou 0");
+            } catch (InputMismatchException excecao){
+                in.nextLine();
+                opcao = -1;
             }
-
             switch (opcao) {
                 case 1:
                     TelaVeiculo telaDeVeiculos = new TelaVeiculo();

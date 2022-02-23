@@ -22,12 +22,13 @@ public class TelaVeiculo {
             System.out.println("| Digite 2 para Listar Veículos    |");
             System.out.println("| Digite 0 para Retornar ao menu   |");
             System.out.println("------------------------------------");
-            int opcao = 4;
+            int opcao;
 
             try {
                 opcao = in.nextInt();
             } catch (InputMismatchException excecao) {
-                System.out.println("resposta errada, digite entre 1, 2 ou 0");
+                in.nextLine();
+                opcao = -1;
             }
 
             switch (opcao) {
@@ -54,8 +55,15 @@ public class TelaVeiculo {
         String marca = in.next();
         System.out.println("Digite o modelo do seu veículo: ");
         String modelo = in.next();
-        System.out.println("Digite o tipo do seu veículo entre HATCH, SEDAN, SUV, PICKUP;");
-        TipoVeiculo tipoVeiculo = TipoVeiculo.valueOf(in.next().toUpperCase());
+        System.out.println("Digite o tipo do seu veículo entre HATCH, SEDAN, SUV, PICKUP: ");
+        TipoVeiculo tipoVeiculo;
+        try {
+            tipoVeiculo = TipoVeiculo.valueOf(in.next().toUpperCase());
+        } catch (IllegalArgumentException excecao) {
+            in.nextLine();
+            System.out.printf("Resposta inválida, digite entre HATCH, SEDAN, SUV e PICKUP: ");
+        }
+        tipoVeiculo = TipoVeiculo.valueOf(in.next().toUpperCase());
         System.out.println("Digite a kilometragem do seu veículo:");
         float kilometragem = in.nextFloat();
         System.out.println("Digite o valor por Km rodado:");
@@ -66,15 +74,16 @@ public class TelaVeiculo {
         bancoVeiculo.cadastrarVeiculo(veiculo);
     }
 
-   public void listarVeiculos() {
-        CriacaoBaseDados criacaoBaseDados = new CriacaoBaseDados();
+    public void listarVeiculos() {
         CriacaoBaseDados.inicializarBase();
         for (Veiculo elemento :
                 bancoVeiculo.getVeiculos()) {
-            System.out.println("Placa: " + elemento.getPlaca() +  " Marca: " + elemento.getMarca() + " Modelo: " + elemento.getModelo() + " Tipo do Veiculo: " + elemento.getTipoVeiculo() + " Kilometragem: " +
-                    elemento.getKilometragem() + " Valor por Km Rodado: " + elemento.getValorKmRodado() + " Valor da diaria: " + elemento.getValorDiaria());
-            System.out.println("_");
+            for (int i = 0; i < bancoVeiculo.getVeiculos().size(); i++) {
+                System.out.println("Id: " + i + "Placa: " + elemento.getPlaca() + " Marca: " + elemento.getMarca() + " Modelo: " + elemento.getModelo() + " Tipo do Veiculo: " + elemento.getTipoVeiculo() + " Kilometragem: " +
+                        elemento.getKilometragem() + " Valor por Km Rodado: " + elemento.getValorKmRodado() + " Valor da diaria: " + elemento.getValorDiaria());
+                System.out.println("_");
 
+            }
         }
     }
 }

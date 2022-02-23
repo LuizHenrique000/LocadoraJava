@@ -7,6 +7,7 @@ import br.com.fundatec.locadoraVeiculo.models.Cliente;
 import br.com.fundatec.locadoraVeiculo.models.Endereco;
 import br.com.fundatec.locadoraVeiculo.bancodedados.ClienteRepository;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TelaCliente {
@@ -21,7 +22,14 @@ public class TelaCliente {
             System.out.println("| Digite 2 para Listar clientes    |");
             System.out.println("| Digite 0 para Retornar ao menu   |");
             System.out.println("------------------------------------");
-            int opcao = in.nextInt();
+            int opcao;
+
+            try {
+                opcao = in.nextInt();
+            } catch (InputMismatchException excecao){
+                in.nextLine();
+                opcao = -1;
+            }
 
             switch (opcao) {
                 case 1:

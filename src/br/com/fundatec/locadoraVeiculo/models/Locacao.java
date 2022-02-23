@@ -4,6 +4,7 @@ import br.com.fundatec.locadoraVeiculo.enums.SituacaoLocacao;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Locacao {
     private Cliente cliente;
@@ -13,37 +14,11 @@ public class Locacao {
     private BigDecimal valor;
     private SituacaoLocacao situacao;
 
-    public Locacao(Cliente cliente, Veiculo veiculo, LocalDate dataLocacao, LocalDate dataEntrega, BigDecimal valor, SituacaoLocacao situacao) {
+    public Locacao(Cliente cliente, Veiculo veiculo, LocalDate dataLocacao) {
         this.cliente = cliente;
         this.veiculo = veiculo;
         this.dataLocacao = dataLocacao;
-        this.dataEntrega = dataEntrega;
-        this.valor = valor;
-        this.situacao = situacao;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public Veiculo getVeiculo() {
-        return veiculo;
-    }
-
-    public LocalDate getDataLocacao() {
-        return dataLocacao;
-    }
-
-    public LocalDate getDataEntrega() {
-        return dataEntrega;
-    }
-
-    public BigDecimal getValor() {
-        return valor;
-    }
-
-    public SituacaoLocacao getSituacao() {
-        return situacao;
+        this.situacao = SituacaoLocacao.ATIVA;
     }
 
     @Override
@@ -56,5 +31,19 @@ public class Locacao {
                 ", valor=" + valor +
                 ", situacao=" + situacao +
                 '}';
+    }
+    public void encerrar(LocalDate dataEntrega, Float kmAtual) {
+        this.situacao = SituacaoLocacao.ENCERRADA;
+
+        Long numeroDiarias = ChronoUnit.DAYS.between(dataLocacao, dataEntrega);
+        Float diferencaKm = kmAtual.floatValue() - veiculo.getKilometragem().floatValue();
+
+       // (numeroDiarias * veiculo.getValorDiaria()) + (diferencaKm * veiculo.getValorKmRodado());
+        BigDecimal diarias = new BigDecimal(numeroDiarias);
+        BigDecimal valorDiaria = new BigDecimal(veiculo.getValorDiaria().toString());
+        BigDecimal km = new BigDecimal(diferencaKm.toString());
+        BigDecimal valorKm = new BigDecimal(veiculo.getValorKmRodado());
+
+
     }
 }
