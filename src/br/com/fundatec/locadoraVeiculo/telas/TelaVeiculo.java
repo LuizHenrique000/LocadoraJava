@@ -1,6 +1,6 @@
 package br.com.fundatec.locadoraVeiculo.telas;
 
-import br.com.fundatec.locadoraVeiculo.bancodedados.CriacaoBaseDados;
+import br.com.fundatec.locadoraVeiculo.bancodedados.CriacaoBaseDadoVeiculo;
 import br.com.fundatec.locadoraVeiculo.bancodedados.VeiculoRepository;
 import br.com.fundatec.locadoraVeiculo.enums.TipoVeiculo;
 import br.com.fundatec.locadoraVeiculo.models.Veiculo;
@@ -9,7 +9,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TelaVeiculo {
-
 
     public VeiculoRepository bancoVeiculo = VeiculoRepository.criar();
     private Scanner in = new Scanner(System.in);
@@ -75,12 +74,14 @@ public class TelaVeiculo {
     }
 
     public void listarVeiculos() {
-        CriacaoBaseDados.inicializarBase();
-        for (Veiculo elemento :
-                bancoVeiculo.getVeiculos()) {
+        CriacaoBaseDadoVeiculo.inicializarBase();
+        for (Veiculo elemento : bancoVeiculo.getVeiculos()) {
             for (int i = 0; i < bancoVeiculo.getVeiculos().size(); i++) {
-                System.out.println("Id: " + i + "Placa: " + elemento.getPlaca() + " Marca: " + elemento.getMarca() + " Modelo: " + elemento.getModelo() + " Tipo do Veiculo: " + elemento.getTipoVeiculo() + " Kilometragem: " +
-                        elemento.getKilometragem() + " Valor por Km Rodado: " + elemento.getValorKmRodado() + " Valor da diaria: " + elemento.getValorDiaria());
+                System.out.println("Id: " + i + "Placa: " + elemento.getPlaca() + " Marca: " + elemento.getMarca()
+                        + " Modelo: " + elemento.getModelo() + " Tipo do Veiculo: " + elemento.getTipoVeiculo()
+                        + " Kilometragem: " +
+                        elemento.getKilometragem() + " Valor por Km Rodado: " + elemento.getValorKmRodado()
+                        + " Valor da diaria: " + elemento.getValorDiaria());
                 System.out.println("_");
 
             }

@@ -1,6 +1,6 @@
 package br.com.fundatec.locadoraVeiculo.telas;
 
-import br.com.fundatec.locadoraVeiculo.bancodedados.CriacaoBaseDados;
+import br.com.fundatec.locadoraVeiculo.bancodedados.CriacaoBaseDadoVeiculo;
 import br.com.fundatec.locadoraVeiculo.bancodedados.VeiculoRepository;
 import br.com.fundatec.locadoraVeiculo.models.Veiculo;
 
@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class TelaLocacao {
     private Scanner in = new Scanner(System.in);
     public VeiculoRepository bancoVeiculo = VeiculoRepository.criar();
-
 
     public void imprimirTelaDeLocacoes() {
         boolean continuar = true;
@@ -43,9 +42,8 @@ public class TelaLocacao {
 
     private void cadastrarLocacao() {
         int contador = 0;
-        CriacaoBaseDados.inicializarBase();
-        for (Veiculo elemento :
-                bancoVeiculo.getVeiculos()) {
+        CriacaoBaseDadoVeiculo.inicializarBase();
+        for (Veiculo elemento : bancoVeiculo.getVeiculos()) {
             System.out.println("Id: " + contador++ + "," + "Placa: " +
                     elemento.getPlaca() + "," + " Marca: " + elemento.getMarca() + "," +
                     " Modelo: " + elemento.getModelo() + "," + " Tipo do Veiculo: " + elemento.getTipoVeiculo() +
@@ -54,8 +52,6 @@ public class TelaLocacao {
                     " Valor da diaria: " + elemento.getValorDiaria());
             System.out.println("_");
         }
-
-        System.out.printf("Escolha um veículo pelo seu ID: ");
 
     }
 }

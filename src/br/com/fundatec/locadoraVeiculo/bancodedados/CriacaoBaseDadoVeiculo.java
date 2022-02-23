@@ -3,7 +3,7 @@ package br.com.fundatec.locadoraVeiculo.bancodedados;
 import br.com.fundatec.locadoraVeiculo.enums.TipoVeiculo;
 import br.com.fundatec.locadoraVeiculo.models.Veiculo;
 
-public class CriacaoBaseDados {
+public class CriacaoBaseDadoVeiculo {
     public static void inicializarBase() {
         cadastrarVeiculos();
     }
@@ -33,4 +33,3 @@ public class CriacaoBaseDados {
         bancoVeiculo.cadastrarVeiculo(new Veiculo("ABC0016", "VW", "Amarok", TipoVeiculo.PICKUP, 0f, 12.0, 115.0));
     }
 }
-

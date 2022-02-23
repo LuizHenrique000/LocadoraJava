@@ -28,4 +28,8 @@ public class VeiculoRepository {
     public List<Veiculo> getVeiculos() {
         return veiculos;
     }
+
+    public List<Veiculo> get(int i) {
+        return veiculos;
+    }
 }
