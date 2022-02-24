@@ -45,6 +45,6 @@ public class Locacao {
         BigDecimal km = new BigDecimal(diferencaKm.toString());
         BigDecimal valorKm = new BigDecimal(veiculo.getValorKmRodado());
 
-
+        (diarias * veiculo.getValorDiaria()) + (diferencaKm * veiculo.getValorKmRodado());
     }
 }

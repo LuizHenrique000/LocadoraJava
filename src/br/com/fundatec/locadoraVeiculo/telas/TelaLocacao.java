@@ -83,9 +83,6 @@ public class TelaLocacao {
         System.out.printf("Digite a data de locação: ");
         LocalDate dataLocacao = LocalDate.parse(in.nextLine());
         System.out.printf("Sua data de locação: " + dataLocacao);
-        LocalDate dataEntrega = null;
-        BigDecimal valor = null;
-        SituacaoLocacao situacao = SituacaoLocacao.ATIVA;
         Locacao locacao = new Locacao(cliente, veiculo, dataLocacao);
         bancoLocacao.adicionar(locacao);
     }
@@ -96,6 +93,23 @@ public class TelaLocacao {
             Locacao locacao = locacoes.get(i);
             System.out.println(String.format("   >>> [%d] --> %s", i, locacoes));
         }
+
     }
 
+    private void encerrarLocacoes() {
+        List<Locacao> locacoes = bancoLocacao.getLocacoes();
+        for (int i = 0; i < locacoes.size(); i++) {
+            Locacao locacao = locacoes.get(i);
+            System.out.println(String.format("   >>> [%d] --> %s", i, locacoes));
+        }
+        System.out.printf("Escolha a locação a ser encerrada: ");
+        int numeroLocacao = in.nextInt();
+        Locacao locacao = bancoLocacao.selecionarLocacao(numeroLocacao);
+        System.out.printf("Digite a data de entrega: ");
+        LocalDate dataEntrega = LocalDate.parse(in.nextLine());
+        System.out.printf("Digite a kilometragem atual: ");
+        Float kilometragemAtual = in.nextFloat();
+        locacao.encerrar(dataEntrega,kilometragemAtual);
+    }
 }
+
