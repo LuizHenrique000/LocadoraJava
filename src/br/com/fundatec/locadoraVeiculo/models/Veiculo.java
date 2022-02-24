@@ -22,22 +22,6 @@ public class Veiculo {
         this.valorDiaria = valorDiaria;
     }
 
-    public String getPlaca() {
-        return placa;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public TipoVeiculo getTipoVeiculo() {
-        return tipoVeiculo;
-    }
-
     public Float getKilometragem() {
         return kilometragem;
     }

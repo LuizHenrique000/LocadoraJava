@@ -9,10 +9,12 @@ import br.com.fundatec.locadoraVeiculo.models.Locacao;
 import br.com.fundatec.locadoraVeiculo.models.Veiculo;
 
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class TelaLocacao {
+    Tela tela = new Tela();
     private Scanner in = new Scanner(System.in);
     private ClienteRepository bancoCliente = ClienteRepository.criar();
     public VeiculoRepository bancoVeiculo = VeiculoRepository.criar();
@@ -28,7 +30,14 @@ public class TelaLocacao {
             System.out.println("| Digite 3 para Listar Locações    |");
             System.out.println("| Digite 0 para Retornar ao Menu   |");
             System.out.println("------------------------------------");
-            int opcao = in.nextInt();
+            int opcao;
+
+            try {
+                opcao = tela.solicitarInt();
+            } catch (InputMismatchException excecao) {
+                tela.solicitarTexto();
+                opcao = -1;
+            }
 
             switch (opcao) {
                 case 1:
@@ -56,7 +65,7 @@ public class TelaLocacao {
             System.out.println(String.format("   >>> [%d] --> %s", i, veiculo));
         }
         System.out.println("Selecione o veiculo pelo id: ");
-        int numeroVeiculo = in.nextInt();
+        int numeroVeiculo = tela.solicitarInt();
         Veiculo veiculo = bancoVeiculo.selecionarVeiculo(numeroVeiculo);
         System.out.println();
         System.out.printf("Clientes:");
@@ -68,11 +77,11 @@ public class TelaLocacao {
         }
         System.out.println();
         System.out.printf("Selecione o cliente por id: ");
-        int numeroCliente = in.nextInt();
-        in.nextLine();
+        int numeroCliente = tela.solicitarInt();
+        tela.solicitarTexto();
         Cliente cliente = bancoCliente.selecionarCliente(numeroCliente);
         System.out.printf("Digite a data de locação: ");
-        LocalDate dataLocacao = LocalDate.parse(in.nextLine());
+        LocalDate dataLocacao = LocalDate.parse(tela.solicitarTexto());
         Locacao locacao = new Locacao(cliente, veiculo, dataLocacao);
         bancoLocacao.adicionar(locacao);
     }
@@ -93,19 +102,18 @@ public class TelaLocacao {
             System.out.println(String.format("   >>> [%d] --> %s", i, locacoes));
         }
         System.out.printf("Escolha a locação a ser encerrada: ");
-        int numeroLocacao = in.nextInt();
-        in.nextLine();
+        int numeroLocacao = tela.solicitarInt();
+        tela.solicitarTexto();
         Locacao locacao = bancoLocacao.selecionarLocacao(numeroLocacao);
         System.out.printf("Digite a data de entrega: ");
-        LocalDate dataEntrega = LocalDate.parse(in.nextLine());
+        LocalDate dataEntrega = LocalDate.parse(tela.solicitarTexto());
         System.out.printf("Digite a kilometragem atual: ");
-        Float kilometragemAtual = in.nextFloat();
+        Float kilometragemAtual = tela.solicitarFloat();
         locacao.encerrar(dataEntrega, kilometragemAtual);
         System.out.println("_______________CONTA FINALIZADA_________________");
-        System.out.println("| Kilometragem atual: " + kilometragemAtual      );
-        System.out.println("| Data de entrega: " + dataEntrega               );
-        System.out.println("| Valor total: " + locacao.valor                 );
+        System.out.println("| Kilometragem atual: " + kilometragemAtual);
+        System.out.println("| Data de entrega: " + dataEntrega);
+        System.out.println("| Valor total: " + locacao.valor);
         System.out.println("------------------------------------------------");
     }
 }
-

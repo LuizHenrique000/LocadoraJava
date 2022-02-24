@@ -27,34 +27,6 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public TipoPessoa getTipoPessoa() {
-        return tipoPessoa;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public Long getCnpj() {
-        return cnpj;
-    }
-
-    public TipoDocumento getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public Long getDocumento() {
-        return documento;
-    }
-
-    public String getRazaoSocial() {
-        return razaoSocial;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
     @Override
     public String toString() {
         return "Cliente [" + "tipoPessoa=" + tipoPessoa + ", nome='" + nome + '\'' + ", cnpj=" + cnpj + ", tipoDocumento=" + tipoDocumento + ", documento=" + documento + ", razaoSocial='" + razaoSocial + '\'' + ", endereco=" + endereco + ']';

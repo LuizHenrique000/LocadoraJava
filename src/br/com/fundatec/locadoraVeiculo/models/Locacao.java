@@ -21,7 +21,6 @@ public class Locacao {
         this.situacao = SituacaoLocacao.ATIVA;
     }
 
-
     public void encerrar(LocalDate dataEntrega, Float kilometragemAtual) {
         this.situacao = SituacaoLocacao.ENCERRADA;
         this.dataEntrega = dataEntrega;
