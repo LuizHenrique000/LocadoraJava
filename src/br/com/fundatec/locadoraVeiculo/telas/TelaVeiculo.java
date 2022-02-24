@@ -49,6 +49,7 @@ public class TelaVeiculo {
     }
 
     private void cadastrarVeiculo() {
+        tela.solicitarTexto();
         System.out.println("Digite a placa do seu veículo: ");
         String placa = tela.solicitarTexto();
         System.out.println("Digite a marca do seu veiculo: ");
@@ -66,10 +67,13 @@ public class TelaVeiculo {
         }
         System.out.println("Digite a kilometragem do seu veículo:");
         float kilometragem = tela.solicitarFloat();
+        tela.solicitarTexto();
         System.out.println("Digite o valor por Km rodado:");
         Double valorKmRodado = tela.solicitarDouble();
+        tela.solicitarTexto();
         System.out.println("Digite o valor da diaria:");
         Double valorDiaria = tela.solicitarDouble();
+        tela.solicitarTexto();
         Veiculo veiculo = new Veiculo(placa, marca, modelo, tipoVeiculo, kilometragem, valorKmRodado, valorDiaria);
         bancoVeiculo.cadastrarVeiculo(veiculo);
     }

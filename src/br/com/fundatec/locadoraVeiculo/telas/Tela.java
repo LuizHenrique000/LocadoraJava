@@ -13,23 +13,30 @@ public class Tela {
         return in.nextLine();
     }
 
-    public Float solicitarFloat(){
-        try{
-            in.nextFloat();
-        } catch (InputMismatchException excecao) {
-            solicitarTexto();
-            System.out.println("Resposta Inválida");
+    public Float solicitarFloat() {
+        float numero = -1;
+        while (numero == -1) {
+            try {
+                numero = in.nextFloat();
+            } catch (InputMismatchException excecao) {
+                System.out.println("Resposta inválida");
+                in.nextLine();
+            }
+
         }
-        return in.nextFloat();
+        return numero;
     }
+
 
     public int solicitarInt() {
         return in.nextInt();
     }
-    public Double solicitarDouble(){
+
+    public Double solicitarDouble() {
         return in.nextDouble();
     }
-    public Long solicitarLong(){
+
+    public Long solicitarLong() {
         return in.nextLong();
     }
 }
