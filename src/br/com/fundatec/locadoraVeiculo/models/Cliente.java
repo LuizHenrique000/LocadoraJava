@@ -56,14 +56,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "tipoPessoa=" + tipoPessoa +
-                ", nome='" + nome + '\'' +
-                ", cnpj=" + cnpj +
-                ", tipoDocumento=" + tipoDocumento +
-                ", documento=" + documento +
-                ", razaoSocial='" + razaoSocial + '\'' +
-                ", endereco=" + endereco +
-                '}';
+        return "Cliente [" + "tipoPessoa=" + tipoPessoa + ", nome='" + nome + '\'' + ", cnpj=" + cnpj + ", tipoDocumento=" + tipoDocumento + ", documento=" + documento + ", razaoSocial='" + razaoSocial + '\'' + ", endereco=" + endereco + ']';
     }
 }

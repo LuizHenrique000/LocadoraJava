@@ -26,6 +26,7 @@ public class LocacaoRepository {
 
     public void adicionar(Locacao locacao) {
         this.locacoes.add(locacao);
+        System.out.println("Locação cadastrada com sucesso");
     }
 
     public List<Locacao> getLocacoes() {

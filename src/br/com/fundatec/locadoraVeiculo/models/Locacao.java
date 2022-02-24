@@ -10,8 +10,8 @@ public class Locacao {
     private Cliente cliente;
     private Veiculo veiculo;
     private LocalDate dataLocacao;
-    private LocalDate dataEntrega;
-    private BigDecimal valor;
+    private LocalDate dataEntrega = null;
+    public BigDecimal valor = null;
     private SituacaoLocacao situacao;
 
     public Locacao(Cliente cliente, Veiculo veiculo, LocalDate dataLocacao) {
@@ -21,30 +21,24 @@ public class Locacao {
         this.situacao = SituacaoLocacao.ATIVA;
     }
 
-    @Override
-    public String toString() {
-        return "Locacao{" +
-                "cliente=" + cliente +
-                ", veiculo=" + veiculo +
-                ", dataLocacao=" + dataLocacao +
-                ", dataEntrega=" + dataEntrega +
-                ", valor=" + valor +
-                ", situacao=" + situacao +
-                '}';
-    }
 
-    public void encerrar(LocalDate dataEntrega, Float kmAtual) {
+    public void encerrar(LocalDate dataEntrega, Float kilometragemAtual) {
         this.situacao = SituacaoLocacao.ENCERRADA;
-
-        Long numeroDiarias = ChronoUnit.DAYS.between(dataLocacao, dataEntrega);
-        Float diferencaKm = kmAtual.floatValue() - veiculo.getKilometragem().floatValue();
-
-        // (numeroDiarias * veiculo.getValorDiaria()) + (diferencaKm * veiculo.getValorKmRodado());
+        this.dataEntrega = dataEntrega;
+        Long numeroDiarias = (ChronoUnit.DAYS.between(dataLocacao, dataEntrega) + 1);
+        Float diferencaKm = kilometragemAtual - veiculo.getKilometragem().floatValue();
         BigDecimal diarias = new BigDecimal(numeroDiarias);
         BigDecimal valorDiaria = new BigDecimal(veiculo.getValorDiaria().toString());
         BigDecimal km = new BigDecimal(diferencaKm.toString());
         BigDecimal valorKm = new BigDecimal(veiculo.getValorKmRodado());
+        this.valor = diarias.multiply(valorDiaria).add(km.multiply(valorKm));
+        veiculo.alterarKilometragem(kilometragemAtual);
+    }
 
-        (diarias * veiculo.getValorDiaria()) + (diferencaKm * veiculo.getValorKmRodado());
+    @Override
+    public String toString() {
+        return "Locacao [" + "cliente=" + cliente + ", veiculo=" + veiculo + ", dataLocacao=" +
+                dataLocacao + ", dataEntrega=" + dataEntrega + ", valor=" + valor
+                + ", situacao=" + situacao + ']';
     }
 }

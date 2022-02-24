@@ -4,12 +4,10 @@ import br.com.fundatec.locadoraVeiculo.bancodedados.ClienteRepository;
 import br.com.fundatec.locadoraVeiculo.bancodedados.LocacaoRepository;
 import br.com.fundatec.locadoraVeiculo.bancodedados.VeiculoRepository;
 
-import br.com.fundatec.locadoraVeiculo.enums.SituacaoLocacao;
 import br.com.fundatec.locadoraVeiculo.models.Cliente;
 import br.com.fundatec.locadoraVeiculo.models.Locacao;
 import br.com.fundatec.locadoraVeiculo.models.Veiculo;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -37,7 +35,7 @@ public class TelaLocacao {
                     cadastrarLocacao();
                     break;
                 case 2:
-                    System.out.println("Encerrar locações");
+                    encerrarLocacoes();
                     break;
                 case 3:
                     listarLocacoes();
@@ -51,7 +49,6 @@ public class TelaLocacao {
     }
 
     private void cadastrarLocacao() {
-
         System.out.println("Veiculos:");
         List<Veiculo> veiculos = bancoVeiculo.getVeiculos();
         for (int i = 0; i < veiculos.size(); i++) {
@@ -60,10 +57,7 @@ public class TelaLocacao {
         }
         System.out.println("Selecione o veiculo pelo id: ");
         int numeroVeiculo = in.nextInt();
-        Veiculo veiculo = null;
-        veiculo = bancoVeiculo.selecionarVeiculo(numeroVeiculo);
-        System.out.printf("Seu veiculo escolhido: ");
-        System.out.printf(String.valueOf(veiculo));
+        Veiculo veiculo = bancoVeiculo.selecionarVeiculo(numeroVeiculo);
         System.out.println();
         System.out.printf("Clientes:");
         System.out.println();
@@ -76,13 +70,9 @@ public class TelaLocacao {
         System.out.printf("Selecione o cliente por id: ");
         int numeroCliente = in.nextInt();
         in.nextLine();
-        Cliente cliente = null;
-        cliente = bancoCliente.selecionarCliente(numeroCliente);
-        System.out.printf("Seu cliente escolhido: ");
-        System.out.printf(String.valueOf(cliente));
+        Cliente cliente = bancoCliente.selecionarCliente(numeroCliente);
         System.out.printf("Digite a data de locação: ");
         LocalDate dataLocacao = LocalDate.parse(in.nextLine());
-        System.out.printf("Sua data de locação: " + dataLocacao);
         Locacao locacao = new Locacao(cliente, veiculo, dataLocacao);
         bancoLocacao.adicionar(locacao);
     }
@@ -96,7 +86,7 @@ public class TelaLocacao {
 
     }
 
-    private void encerrarLocacoes() {
+    public void encerrarLocacoes() {
         List<Locacao> locacoes = bancoLocacao.getLocacoes();
         for (int i = 0; i < locacoes.size(); i++) {
             Locacao locacao = locacoes.get(i);
@@ -104,12 +94,18 @@ public class TelaLocacao {
         }
         System.out.printf("Escolha a locação a ser encerrada: ");
         int numeroLocacao = in.nextInt();
+        in.nextLine();
         Locacao locacao = bancoLocacao.selecionarLocacao(numeroLocacao);
         System.out.printf("Digite a data de entrega: ");
         LocalDate dataEntrega = LocalDate.parse(in.nextLine());
         System.out.printf("Digite a kilometragem atual: ");
         Float kilometragemAtual = in.nextFloat();
-        locacao.encerrar(dataEntrega,kilometragemAtual);
+        locacao.encerrar(dataEntrega, kilometragemAtual);
+        System.out.println("_______________CONTA FINALIZADA_________________");
+        System.out.println("| Kilometragem atual: " + kilometragemAtual      );
+        System.out.println("| Data de entrega: " + dataEntrega               );
+        System.out.println("| Valor total: " + locacao.valor                 );
+        System.out.println("------------------------------------------------");
     }
 }
 

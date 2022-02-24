@@ -49,6 +49,9 @@ public class Veiculo {
     public Double getValorDiaria() {
         return valorDiaria;
     }
+    public void alterarKilometragem(Float kmAtual){
+        this.kilometragem = kmAtual;
+    }
 
     @Override
     public String toString() {
