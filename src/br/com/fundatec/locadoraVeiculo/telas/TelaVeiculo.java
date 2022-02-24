@@ -2,6 +2,8 @@ package br.com.fundatec.locadoraVeiculo.telas;
 
 import br.com.fundatec.locadoraVeiculo.bancodedados.CriacaoBaseDadoVeiculo;
 import br.com.fundatec.locadoraVeiculo.bancodedados.VeiculoRepository;
+import br.com.fundatec.locadoraVeiculo.enums.TipoDocumento;
+import br.com.fundatec.locadoraVeiculo.enums.TipoPessoa;
 import br.com.fundatec.locadoraVeiculo.enums.TipoVeiculo;
 import br.com.fundatec.locadoraVeiculo.models.Veiculo;
 
@@ -86,4 +88,58 @@ public class TelaVeiculo {
             }
         }
     }
+    private TipoPessoa lerTipoPessoa() {
+        while (true) {
+            try {
+                String tipoPessoa = in.next();
+                return TipoPessoa.valueOf(tipoPessoa.toUpperCase());
+            } catch (IllegalArgumentException excecao) {
+                System.err.println(
+                        "Tipo de pessoa invalida, digite uma das opções válidas. (FISICA ou JURIDICA)");
+            }
+        }
+    }
+    private TipoDocumento lerTipoDocumento() {
+        while (true) {
+            try {
+                String tipoDocumento = in.next();
+                return TipoDocumento.valueOf(tipoDocumento.toUpperCase());
+            } catch (IllegalArgumentException excecao) {
+                System.err.println(
+                        "Tipo de documento inválido, digite uma das opções válidas: CPF, CNH ou RG");
+            }
+        }
+    }
+
+    private  int lerInt(){
+        while (true) {
+            try {
+                return in.nextInt();
+            } catch (InputMismatchException excecao) {
+                in.nextLine();
+                System.err.println("!!!Digite um valor válido!!!");
+            }
+        }
+    }
+    private Long lerLong() {
+        while (true) {
+            try {
+                return in.nextLong();
+            } catch (InputMismatchException excecao) {
+                in.nextLine();
+                System.err.println("!!!Digite um valor válido!!!");
+            }
+        }
+    }
+    private String lerString(){
+        while (true) {
+            try {
+                return in.next();
+            } catch (InputMismatchException excecao) {
+                in.nextLine();
+                System.err.println("!!!Digite uma opção válida!!!");
+            }
+        }
+    }
+}
 }

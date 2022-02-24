@@ -18,10 +18,11 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public Cliente(TipoPessoa tipoPessoa, Long cnpj, TipoDocumento tipoDocumento, String razaoSocial, Endereco endereco) {
+    public Cliente(TipoPessoa tipoPessoa, Long cnpj, TipoDocumento tipoDocumento, Long documento, String razaoSocial, Endereco endereco) {
         this.tipoPessoa = tipoPessoa;
         this.cnpj = cnpj;
         this.tipoDocumento = tipoDocumento;
+        this.documento = documento;
         this.razaoSocial = razaoSocial;
         this.endereco = endereco;
     }

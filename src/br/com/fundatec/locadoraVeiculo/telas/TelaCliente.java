@@ -1,8 +1,5 @@
 package br.com.fundatec.locadoraVeiculo.telas;
 
-
-import br.com.fundatec.locadoraVeiculo.bancodedados.CriacaoBaseDadoCliente;
-import br.com.fundatec.locadoraVeiculo.bancodedados.CriacaoBaseDadoVeiculo;
 import br.com.fundatec.locadoraVeiculo.enums.TipoDocumento;
 import br.com.fundatec.locadoraVeiculo.enums.TipoPessoa;
 import br.com.fundatec.locadoraVeiculo.models.Cliente;
@@ -28,7 +25,7 @@ public class TelaCliente {
 
             try {
                 opcao = in.nextInt();
-            } catch (InputMismatchException excecao){
+            } catch (InputMismatchException excecao) {
                 in.nextLine();
                 opcao = -1;
             }
@@ -109,7 +106,7 @@ public class TelaCliente {
             cliente = new Cliente(tipoPessoa, nome, documento, endereco);
             bancoCliente.adicionar(cliente);
         } else {
-            Cliente cliente1 = new Cliente(tipoPessoa, cnpj, tipoDocumento, razaoSocial, endereco);
+            Cliente cliente1 = new Cliente(tipoPessoa, cnpj, tipoDocumento,documento, razaoSocial, endereco);
             bancoCliente.adicionar(cliente1);
         }
 
