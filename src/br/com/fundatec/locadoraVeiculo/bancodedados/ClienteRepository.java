@@ -1,6 +1,7 @@
 package br.com.fundatec.locadoraVeiculo.bancodedados;
 
 import br.com.fundatec.locadoraVeiculo.models.Cliente;
+import br.com.fundatec.locadoraVeiculo.models.Veiculo;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -28,5 +29,8 @@ public class ClienteRepository {
 
     public List<Cliente> getClientes() {
         return clientes;
+    }
+    public Cliente selecionarCliente(int indice) {
+        return clientes.get(indice);
     }
 }

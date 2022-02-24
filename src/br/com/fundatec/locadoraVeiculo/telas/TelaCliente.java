@@ -116,7 +116,6 @@ public class TelaCliente {
     }
 
     private void listarClientes() {
-        CriacaoBaseDadoCliente.inicializarBase();
         for (Cliente elemento : bancoCliente.getClientes()) {
             if (elemento.getTipoPessoa().equals(TipoPessoa.FISICA)) {
                 System.out.println("Pessoa juridica ou fisica : " + elemento.getTipoPessoa() + "," + " Nome: " + elemento.getNome() +

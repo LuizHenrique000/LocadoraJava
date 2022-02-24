@@ -12,13 +12,13 @@ public class Cliente {
     private String razaoSocial;
     private Endereco endereco;
 
-    public Cliente(TipoPessoa tipoPessoa,String nome,Long documento, Endereco endereco) {
+    public Cliente(TipoPessoa tipoPessoa, String nome, Long documento, Endereco endereco) {
         this.tipoPessoa = tipoPessoa;
         this.nome = nome;
         this.endereco = endereco;
     }
 
-    public Cliente(TipoPessoa tipoPessoa,Long cnpj, TipoDocumento tipoDocumento,String razaoSocial, Endereco endereco) {
+    public Cliente(TipoPessoa tipoPessoa, Long cnpj, TipoDocumento tipoDocumento, String razaoSocial, Endereco endereco) {
         this.tipoPessoa = tipoPessoa;
         this.cnpj = cnpj;
         this.tipoDocumento = tipoDocumento;
@@ -52,5 +52,18 @@ public class Cliente {
 
     public Endereco getEndereco() {
         return endereco;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "tipoPessoa=" + tipoPessoa +
+                ", nome='" + nome + '\'' +
+                ", cnpj=" + cnpj +
+                ", tipoDocumento=" + tipoDocumento +
+                ", documento=" + documento +
+                ", razaoSocial='" + razaoSocial + '\'' +
+                ", endereco=" + endereco +
+                '}';
     }
 }

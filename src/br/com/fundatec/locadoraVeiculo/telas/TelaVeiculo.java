@@ -74,7 +74,6 @@ public class TelaVeiculo {
     }
 
     public void listarVeiculos() {
-        CriacaoBaseDadoVeiculo.inicializarBase();
         for (Veiculo elemento : bancoVeiculo.getVeiculos()) {
             for (int i = 0; i < bancoVeiculo.getVeiculos().size(); i++) {
                 System.out.println("Id: " + i + "Placa: " + elemento.getPlaca() + " Marca: " + elemento.getMarca()

@@ -32,13 +32,14 @@ public class Locacao {
                 ", situacao=" + situacao +
                 '}';
     }
+
     public void encerrar(LocalDate dataEntrega, Float kmAtual) {
         this.situacao = SituacaoLocacao.ENCERRADA;
 
         Long numeroDiarias = ChronoUnit.DAYS.between(dataLocacao, dataEntrega);
         Float diferencaKm = kmAtual.floatValue() - veiculo.getKilometragem().floatValue();
 
-       // (numeroDiarias * veiculo.getValorDiaria()) + (diferencaKm * veiculo.getValorKmRodado());
+        // (numeroDiarias * veiculo.getValorDiaria()) + (diferencaKm * veiculo.getValorKmRodado());
         BigDecimal diarias = new BigDecimal(numeroDiarias);
         BigDecimal valorDiaria = new BigDecimal(veiculo.getValorDiaria().toString());
         BigDecimal km = new BigDecimal(diferencaKm.toString());
