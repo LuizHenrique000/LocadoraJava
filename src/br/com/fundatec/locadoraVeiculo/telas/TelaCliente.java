@@ -8,12 +8,10 @@ import br.com.fundatec.locadoraVeiculo.bancodedados.ClienteRepository;
 
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 
 public class TelaCliente {
     Tela tela = new Tela();
     private ClienteRepository bancoCliente = ClienteRepository.criar();
-    private Scanner in = new Scanner(System.in);
 
     public void imprimirTelaDeClientes() {
         boolean continuar = true;
@@ -29,7 +27,7 @@ public class TelaCliente {
             try {
                 opcao = tela.solicitarInt();
             } catch (InputMismatchException excecao) {
-               tela.solicitarTexto();
+                tela.solicitarTexto();
                 opcao = -1;
             }
 
@@ -57,8 +55,7 @@ public class TelaCliente {
         Long cnpj = 0L;
 
         System.out.println("Digite se você é uma pessoa física ou jurídica: ");
-        TipoPessoa tipoPessoa;
-        tipoPessoa = null;
+        TipoPessoa tipoPessoa = null;
         while (tipoPessoa == null) {
             try {
                 tipoPessoa = TipoPessoa.valueOf(tela.solicitarTexto().toUpperCase());
@@ -72,8 +69,10 @@ public class TelaCliente {
             tela.solicitarTexto();
             System.out.println("Digite sua razão social: ");
             razaoSocial = tela.solicitarTexto();
+        } else if (tipoPessoa.equals(TipoPessoa.FISICA)) {
+            System.out.println("Digite seu nome: ");
+            nome = tela.solicitarTexto();
             System.out.println("Digite seu tipo de documento: ");
-            tipoDocumento = null;
             while (tipoDocumento == null) {
                 try {
                     tipoDocumento = TipoDocumento.valueOf(tela.solicitarTexto().toUpperCase());
@@ -84,7 +83,7 @@ public class TelaCliente {
             if (tipoDocumento.equals(TipoDocumento.CPF)) {
                 System.out.println("Informe o CPF: ");
                 documento = tela.solicitarLong();
-               tela.solicitarTexto();
+                tela.solicitarTexto();
             } else if (tipoDocumento.equals(TipoDocumento.RG)) {
                 System.out.println("Informe o RG:");
                 documento = tela.solicitarLong();
@@ -94,48 +93,42 @@ public class TelaCliente {
                 documento = tela.solicitarLong();
                 tela.solicitarTexto();
             }
-        } else if (tipoPessoa.equals(TipoPessoa.FISICA)) {
-            System.out.println("Digite seu nome: ");
-            nome = tela.solicitarTexto();
-            System.out.println("Digite seu documento: ");
-            documento = tela.solicitarLong();
-           tela.solicitarTexto();
-        }
-        System.out.println("Digite seu logradouro: ");
-        String logradouro = tela.solicitarTexto();
-        System.out.println("Digite o número da sua casa: ");
-        Integer numero = tela.solicitarInt();
-        tela.solicitarTexto();
-        System.out.println("Digite o complemento do seu endereço: ");
-        String complemento = tela.solicitarTexto();
-        System.out.println("Digite seu bairro: ");
-        String bairro = tela.solicitarTexto();
-        System.out.println("Digite sua cidade: ");
-        String cidade = tela.solicitarTexto();
-        System.out.println("Digite sua UF: ");
-        String uf = tela.solicitarTexto();
-        System.out.println("Digite seu CEP: ");
-        Integer cep = tela.solicitarInt();
-       tela.solicitarTexto();
-        Endereco endereco = new Endereco(logradouro, numero, complemento, bairro, cidade, uf, cep);
-        Cliente cliente;
-        if (tipoPessoa.equals(TipoPessoa.FISICA)) {
-            cliente = new Cliente(tipoPessoa, nome, documento, endereco);
-            bancoCliente.adicionar(cliente);
-        } else {
-            Cliente cliente1 = new Cliente(tipoPessoa, cnpj, tipoDocumento, documento, razaoSocial, endereco);
-            bancoCliente.adicionar(cliente1);
-        }
+            System.out.println("Digite seu logradouro: ");
+            String logradouro = tela.solicitarTexto();
+            System.out.println("Digite o número da sua casa: ");
+            Integer numero = tela.solicitarInt();
+            tela.solicitarTexto();
+            System.out.println("Digite o complemento do seu endereço: ");
+            String complemento = tela.solicitarTexto();
+            System.out.println("Digite seu bairro: ");
+            String bairro = tela.solicitarTexto();
+            System.out.println("Digite sua cidade: ");
+            String cidade = tela.solicitarTexto();
+            System.out.println("Digite sua UF: ");
+            String uf = tela.solicitarTexto();
+            System.out.println("Digite seu CEP: ");
+            Integer cep = tela.solicitarInt();
+            tela.solicitarTexto();
+            Endereco endereco = new Endereco(logradouro, numero, complemento, bairro, cidade, uf, cep);
+            Cliente cliente;
+            if (tipoPessoa.equals(TipoPessoa.FISICA)) {
+                cliente = new Cliente(nome,tipoDocumento,documento,endereco);
+                bancoCliente.adicionar(cliente);
+            } else if (tipoPessoa.equals(TipoPessoa.JURIDICA)) {
+                Cliente cliente1 = new Cliente(cnpj,razaoSocial,endereco);
+                bancoCliente.adicionar(cliente1);
+            }
 
+        }
     }
 
-    private void listarClientes() {
-        List<Cliente> clientes = bancoCliente.getClientes();
-        for (int i = 0; i < clientes.size(); i++) {
-            Cliente cliente = clientes.get(i);
-            System.out.println(String.format("   >>> [%d] --> %s", i, cliente));
-            System.out.println("_");
-        }
+        private void listarClientes() {
+            List<Cliente> clientes = bancoCliente.getClientes();
+            for (int i = 0; i < clientes.size(); i++) {
+                Cliente cliente = clientes.get(i);
+                System.out.println(String.format("   >>> [%d] --> %s", i, cliente));
+                System.out.println("_");
+            }
 
+        }
     }
-}

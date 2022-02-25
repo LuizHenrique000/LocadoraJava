@@ -6,12 +6,10 @@ import br.com.fundatec.locadoraVeiculo.models.Veiculo;
 
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 
 public class TelaVeiculo {
     Tela tela = new Tela();
     public VeiculoRepository bancoVeiculo = VeiculoRepository.criar();
-    private Scanner in = new Scanner(System.in);
 
     public void imprimirTelaVeiculos() {
         boolean continuar = true;

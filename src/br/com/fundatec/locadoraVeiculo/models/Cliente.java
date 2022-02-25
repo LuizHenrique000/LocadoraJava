@@ -12,20 +12,21 @@ public class Cliente {
     private String razaoSocial;
     private Endereco endereco;
 
-    public Cliente(TipoPessoa tipoPessoa, String nome, Long documento, Endereco endereco) {
-        this.tipoPessoa = tipoPessoa;
-        this.nome = nome;
-        this.endereco = endereco;
-    }
-
-    public Cliente(TipoPessoa tipoPessoa, Long cnpj, TipoDocumento tipoDocumento, Long documento, String razaoSocial, Endereco endereco) {
-        this.tipoPessoa = tipoPessoa;
+    public Cliente(Long cnpj, String razaoSocial, Endereco endereco) {
+        this.tipoPessoa = TipoPessoa.JURIDICA;
         this.cnpj = cnpj;
-        this.tipoDocumento = tipoDocumento;
-        this.documento = documento;
         this.razaoSocial = razaoSocial;
         this.endereco = endereco;
     }
+
+    public Cliente(String nome, TipoDocumento tipoDocumento, Long documento, Endereco endereco) {
+        this.tipoPessoa = TipoPessoa.FISICA;
+        this.nome = nome;
+        this.tipoDocumento = tipoDocumento;
+        this.documento = documento;
+        this.endereco = endereco;
+    }
+
 
     @Override
     public String toString() {

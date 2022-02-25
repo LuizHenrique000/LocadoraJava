@@ -23,6 +23,7 @@ public class VeiculoRepository {
 
     public void cadastrarVeiculo(Veiculo veiculo) {
         this.veiculos.add(veiculo);
+        System.out.printf("Veiculo cadastrado com sucesso");
     }
 
     public List<Veiculo> getVeiculos() {

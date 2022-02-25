@@ -11,11 +11,9 @@ import br.com.fundatec.locadoraVeiculo.models.Veiculo;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 
 public class TelaLocacao {
     Tela tela = new Tela();
-    private Scanner in = new Scanner(System.in);
     private ClienteRepository bancoCliente = ClienteRepository.criar();
     public VeiculoRepository bancoVeiculo = VeiculoRepository.criar();
     public LocacaoRepository bancoLocacao = LocacaoRepository.criar();
@@ -58,15 +56,15 @@ public class TelaLocacao {
     }
 
     private void cadastrarLocacao() {
+        Veiculo veiculo = null;
         System.out.println("Veiculos:");
         List<Veiculo> veiculos = bancoVeiculo.getVeiculos();
         for (int i = 0; i < veiculos.size(); i++) {
-            Veiculo veiculo = veiculos.get(i);
+            veiculo = veiculos.get(i);
             System.out.println(String.format("   >>> [%d] --> %s", i, veiculo));
         }
         System.out.println("Selecione o veiculo pelo id: ");
         int numeroVeiculo = tela.solicitarInt();
-        Veiculo veiculo = bancoVeiculo.selecionarVeiculo(numeroVeiculo);
         System.out.println();
         System.out.printf("Clientes:");
         System.out.println();
@@ -92,11 +90,19 @@ public class TelaLocacao {
             Locacao locacao = locacoes.get(i);
             System.out.println(String.format("   >>> [%d] --> %s", i, locacoes));
         }
+        if (locacoes.isEmpty()) {
+            System.out.printf("Ainda não há locações");
+        }
 
     }
 
     public void encerrarLocacoes() {
         List<Locacao> locacoes = bancoLocacao.getLocacoes();
+        if (locacoes.isEmpty()) {
+            System.out.printf("Ainda não há locações");
+            return;
+        }
+
         for (int i = 0; i < locacoes.size(); i++) {
             Locacao locacao = locacoes.get(i);
             System.out.println(String.format("   >>> [%d] --> %s", i, locacoes));
